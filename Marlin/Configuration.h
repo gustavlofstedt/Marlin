@@ -486,7 +486,32 @@
  * Override with M92
  *                                      X, Y, Z, E0 [, E1[, E2[, E3]]]
  */
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 4000, 500 }
+// Stepper Motors
+// E.g. steps per revolution = ( 1.8 degree motor / 360 degree ) * 16 microsteps = 3200 steps
+#define STEPS_PER_REVOLUTION_XY 3200
+#define STEPS_PER_REVOLUTION_Z 3200
+#define STEPS_PER_REVOLUTION_E0 3200
+
+// Belts
+// GT2 with 20 teeth pulley.
+#define BELT_PITCH_XY 2
+#define PULLEY_NUM_TEETH_XY 20
+
+// Lead Screw
+#define THREAD_PITCH_Z 2
+
+// Extruder
+// Wades extuder with a gear ratio of 43/10
+// 8 mm hobbed bolt, 5-7 mm effective diameter.
+#define GEAR_RATIO_E0 4.3f
+#define PINCH_WHEEL_EFFECTIVE_DIAMETER_E0 7.0f
+
+// Steps per Unit
+#define AXIS_STEPS_PER_UNIT_XY  ( STEPS_PER_REVOLUTION_XY ) / ( BELT_PITCH_XY * PULLEY_NUM_TEETH_XY )
+#define AXIS_STEPS_PER_UNIT_Z   ( STEPS_PER_REVOLUTION_Z ) / THREAD_PITCH_Z
+#define AXIS_STEPS_PER_UNIT_E0  ( STEPS_PER_REVOLUTION_E0 * GEAR_RATIO_E0 ) / ( PINCH_WHEEL_EFFECTIVE_DIAMETER_E0 * M_PI )
+
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { AXIS_STEPS_PER_UNIT_XY, AXIS_STEPS_PER_UNIT_XY, AXIS_STEPS_PER_UNIT_Z, AXIS_STEPS_PER_UNIT_E0 }
 
 /**
  * Default Max Feed Rate (mm/s)

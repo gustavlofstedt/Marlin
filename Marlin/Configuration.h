@@ -506,7 +506,7 @@
 // Wades extuder with a gear ratio of 43/10
 // 8 mm hobbed bolt, 5-7 mm effective diameter.
 #define GEAR_RATIO_E0 4.3f
-#define PINCH_WHEEL_EFFECTIVE_DIAMETER_E0 7.0f
+#define PINCH_WHEEL_EFFECTIVE_DIAMETER_E0 5.8f
 
 // Steps per Unit
 #define AXIS_STEPS_PER_UNIT_XY  STEPS_PER_REVOLUTION_XY / ( BELT_PITCH_XY * PULLEY_NUM_TEETH_XY )
@@ -721,7 +721,7 @@
 // @section extruder
 
 // For direct drive extruder v9 set to true, for geared extruder set to false.
-#define INVERT_E0_DIR false
+#define INVERT_E0_DIR true
 #define INVERT_E1_DIR false
 #define INVERT_E2_DIR false
 #define INVERT_E3_DIR false
